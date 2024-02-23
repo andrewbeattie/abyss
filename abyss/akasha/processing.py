@@ -1,11 +1,9 @@
 import json
 import requests
+from settings import AKASHA_URL
 from abyss.akasha.extractor import extract_abyss_records, extract_schedule
 
-
-url = "https://akashadata.feixiaoqiu.com/static/data/abyss_record_list.js"
-
-response = requests.get(url)
+response = requests.get(AKASHA_URL)
 text = response.text
 
 class Parser:
@@ -42,4 +40,3 @@ for record in parser.abyss_records['usage_list']:
 import pandas as pd
 data = pd.DataFrame(character_by_usage)
 data.to_csv(r"./data/character_usage.csv", index=False)
-bp = 0

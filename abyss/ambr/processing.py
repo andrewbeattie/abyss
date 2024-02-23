@@ -5,8 +5,6 @@ def main():
     data = get_character_name()
     df = pd.DataFrame(data)
     df.to_csv(r"./data/character_name.csv", index=False)
-    bp = 0
-
 
 if __name__ == "__main__":
     main()

@@ -4,13 +4,11 @@ Use project amber to get the character ids
 
 import requests
 import regex as re
+import settings
+from urllib.parse import urljoin
 from abyss.models import Character
 
 def find_numbers(character_id: str) -> str:
-    """
-    10000002-B
-    regex for all digits
-    """
     return re.sub("[^\d]", "", character_id)
 
 def strip_zeros(character_id: int) -> int:
@@ -21,7 +19,7 @@ def strip_zeros(character_id: int) -> int:
     return int(character_id)
 
 def get_character_name():
-    url = "https://api.ambr.top/v2/id/avatar"
+    url = urljoin(settings.AMBR_URL, "v2/id/avatar")
     resp = requests.get(url)
     data = []
     for key, value in resp.json()["data"]["items"].items():
@@ -31,7 +29,3 @@ def get_character_name():
         )
         data.append(character)
     return data
-
-
-
-bp = 0
